@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Website</title>
+  <link rel="stylesheet" href="/Assets/style.css">
+    <link rel="manifest" href="/Assets/menifest.json">
+</head>
+<body>
+    <h1>Hello, Offline World!</h1>
+    <div id="offline-message" class="hidden">You are currently offline</div>
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/Assets/service-worker.js')
+                .then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, error => {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+            });
+        }
+    </script>
+    <script src="/Assets/script.js"></script>
+</body>
+</html>
